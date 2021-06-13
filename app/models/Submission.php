@@ -7,7 +7,8 @@ use ActiveRecord\Model;
 class Submission extends Model
 {
     static $has_many = array(
+        [ 'submission_options'],
         array('options',
-            'through' => 'Submission_Option')
+            'through' => 'submission_options')
     );
 }

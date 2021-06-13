@@ -5,6 +5,9 @@ require_once '../vendor/zamzar/php_activerecord/ActiveRecord.php';
 //use app\models\User;
 require_once __DIR__.'/models/User.php';
 require_once __DIR__.'/models/Submission.php';
+require_once __DIR__.'/models/SubmissionOption.php';
+require_once __DIR__.'/models/Answer.php';
+require_once __DIR__.'/models/AnswerOption.php';
 require_once __DIR__.'/models/Option.php';
 require_once __DIR__.'/models/Select.php';
 require_once __DIR__.'/models/Scene.php';
@@ -31,6 +34,23 @@ require_once __DIR__.'/models/Question.php';
 
 $ascene = models\Scene::first();
 $thevid = $ascene->video;
-print_r($thevid);
+//var_export($thevid->to_json());
 $theQuestion = $ascene->question;
-print_r($theQuestion);
+//var_export($theQuestion->to_json());
+
+$sub = models\Submission::first();
+$options = $sub->options;
+//array_map(function($item){
+//    var_export($item->to_json());
+//}, $options);
+
+$sub = models\Answer::first();
+$options = $sub->options;
+//array_map(function($item){
+//    var_export($item->to_json());
+//}, $options);
+
+
+//echo json_encode($options);
+
+echo $sub->to_json(['include'=>['options']]);
